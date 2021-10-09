@@ -3,7 +3,6 @@ import "../App.css";
 import { getAllCoins } from "../api/coingecko";
 
 function Pagination(props) {
-  const [currentPage, setCurrentPage] = useState(1);
   const [maxPage, setMaxPage] = useState(-1);
   const [paginationArr, setPaginationArr] = useState(
     new Array(5).fill("bg-gray-200")
@@ -12,7 +11,6 @@ function Pagination(props) {
   useEffect(() => {
     if (!didMount) {
       getAllCoins().then((data) => {
-        console.log(Math.ceil(data.length / 100.0));
         setMaxPage(Math.ceil(data.length / 100.0));
       });
       if (props.current) {
@@ -25,35 +23,67 @@ function Pagination(props) {
       setDidMount(true);
     }
   });
+  useEffect(() => {
+    if (didMount) {
+      setPaginationArr((arr) => {
+        let newArr = [...arr].fill("bg-gray-200");
+        newArr[props.paginationIndex] = "pagination-selected";
+        return newArr;
+      });
+    }
+  }, [props.paginationIndex]);
   const buttonMap = paginationArr.map((item, index) => {
     let marginLeft = "";
     if (index > 0) {
       marginLeft = " ml-3";
     }
-    if (currentPage + index > maxPage) {
+    if (props.paginationPointer + index > maxPage) {
       return undefined;
     }
     return (
       <div
         key={index}
         className={`inline-block cursor-pointer w-12 h-12 pt-3 text-center rounded-full ${paginationArr[index]}${marginLeft}`}
+        onClick={() => {
+          props.setPage(props.paginationPointer + index);
+          setPaginationArr((arr) => {
+            let newArr = [...arr].fill("bg-gray-200");
+            newArr[index] = "pagination-selected";
+            return newArr;
+          });
+          props.setPaginationIndex(index);
+        }}
       >
-        <p>{currentPage + index}</p>
+        <p>{props.paginationPointer + index}</p>
       </div>
     );
   });
   const nextHandler = () => {
-    if (currentPage + 5 <= maxPage) {
-      setCurrentPage((current) => current + 5);
+    if (props.paginationPointer + 5 <= maxPage) {
+      props.setPage(props.paginationPointer + 5);
+      props.setPaginationIndex(0);
+      props.setPaginationPointer((current) => current + 5);
+      setPaginationArr((arr) => {
+        let newArr = [...arr].fill("bg-gray-200");
+        newArr[0] = "pagination-selected";
+        return newArr;
+      });
     }
   };
   const backHandler = () => {
-    if (currentPage - 5 > 0) {
-      setCurrentPage((current) => current - 5);
+    if (props.paginationPointer - 5 > 0) {
+      props.setPaginationIndex(0);
+      props.setPage(props.paginationPointer - 5);
+      props.setPaginationPointer((current) => current - 5);
+      setPaginationArr((arr) => {
+        let newArr = [...arr].fill("bg-gray-200");
+        newArr[0] = "pagination-selected";
+        return newArr;
+      });
     }
   };
   return (
-    <div class="w-full my-5">
+    <div class="w-full my-6">
       <div className="table mx-auto">
         <button
           className="bg-black rounded-3xl text-white px-3 py-2 mr-20"

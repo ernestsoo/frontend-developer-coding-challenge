@@ -15,7 +15,9 @@ function HomeScreen() {
               <p className="font-bold">Top 10 Cryptocurrencies</p>
               <p className="text-gray-600 text-xs">Sorted by Market Cap</p>
             </div>
-            <p className="text-md text-gray-600 float-right">View Full List</p>
+            <p className="bg-black rounded-3xl text-md text-white float-right px-4 py-2 cursor-pointer">
+              View Full List
+            </p>
           </div>
           <CryptoTable />
         </div>

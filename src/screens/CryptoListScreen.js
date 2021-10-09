@@ -5,6 +5,8 @@ import Pagination from "../components/Pagination";
 
 function CryptoListScreen() {
   const [page, setPage] = useState(1);
+  const [paginationPointer, setPaginationPointer] = useState(1);
+  const [paginationIndex, setPaginationIndex] = useState(0);
   return (
     <div className="screen">
       <div className="mb-5">
@@ -20,9 +22,23 @@ function CryptoListScreen() {
       <div className=" bg-light rounded-3xl px-8 py-6 mr-8">
         <p className="font-bold">Cryptocurrencies List</p>
         <p className="text-gray-600 text-xs">Sorted by Market Cap</p>
-        <Pagination current={page} />
+        <Pagination
+          current={page}
+          setPage={setPage}
+          paginationIndex={paginationIndex}
+          setPaginationIndex={setPaginationIndex}
+          paginationPointer={paginationPointer}
+          setPaginationPointer={setPaginationPointer}
+        />
         <CryptoTable page={page} per_page={100} />
-        <Pagination current={page} />
+        <Pagination
+          current={page}
+          setPage={setPage}
+          paginationIndex={paginationIndex}
+          setPaginationIndex={setPaginationIndex}
+          paginationPointer={paginationPointer}
+          setPaginationPointer={setPaginationPointer}
+        />
       </div>
     </div>
   );
