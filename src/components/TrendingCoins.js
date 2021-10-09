@@ -3,9 +3,13 @@ import "../App.css";
 import { getTrendingCoins, getCoinMarketInformation } from "../api/coingecko";
 import UpArrowIcon from "../assets/up-arrow.png";
 import DownArrowIcon from "../assets/down-arrow.png";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+
 function TrendingCoins() {
   const [didMount, setDidMount] = useState(false);
   const [trendingCoinList, setTrendingCoinList] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (!didMount) {
       getTrendingCoins().then((data) => {
@@ -18,10 +22,11 @@ function TrendingCoins() {
           }
         }
         getCoinMarketInformation(ids).then((data) => {
+          setIsLoading(false);
           setTrendingCoinList(
             data.map((item, index) => {
               let price_change = undefined;
-              if (item.price_change_24h > 0) {
+              if (item.price_change_percentage_24h > 0) {
                 price_change = (
                   <div>
                     <p className="ml-0 inline-block font-medium text-green-400">
@@ -71,6 +76,20 @@ function TrendingCoins() {
       setDidMount(true);
     }
   });
+
+  if (isLoading) {
+    return (
+      <div className="mx-auto table py-48">
+        <Loader
+          type="Puff"
+          color="darkgray"
+          height={65}
+          width={65}
+          timeout={3000}
+        />
+      </div>
+    );
+  }
   return trendingCoinList;
 }
 

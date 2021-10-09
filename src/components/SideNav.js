@@ -4,11 +4,14 @@ import LogoIcon from "../assets/logo.png";
 import SettingsIcon from "../assets/settings.png";
 import { ReactComponent as HomeSVG } from "../assets/home.svg";
 import { ReactComponent as ListSVG } from "../assets/list.svg";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function SideNav() {
   let history = useHistory();
-  const [currentState, setCurrentState] = useState(1);
+  const location = useLocation();
+  const [currentState, setCurrentState] = useState(
+    location.pathname == "/" ? 1 : 2
+  );
   return (
     <div className="fixed flex items-center w-48 h-screen">
       <div className="side-nav flex flex-column items-center rounded-3xl bg-black w-32 h-full mx-auto">

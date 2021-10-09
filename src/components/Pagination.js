@@ -10,9 +10,6 @@ function Pagination(props) {
   const [didMount, setDidMount] = useState(false);
   useEffect(() => {
     if (!didMount) {
-      getAllCoins().then((data) => {
-        setMaxPage(Math.ceil(data.length / 100.0));
-      });
       if (props.current) {
         setPaginationArr((arr) => {
           let newArr = [...arr];
@@ -23,6 +20,9 @@ function Pagination(props) {
       setDidMount(true);
     }
   });
+  useEffect(() => {
+    setMaxPage(Math.ceil(props.maxCoins / 100.0));
+  }, [props.maxCoins]);
   useEffect(() => {
     if (didMount) {
       setPaginationArr((arr) => {

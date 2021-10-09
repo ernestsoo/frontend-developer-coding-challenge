@@ -16,8 +16,11 @@ export const getTrendingCoins = () => {
 };
 
 export const getCoinMarketInformation = (id) => {
+  const ids = id.split(",");
   return new Promise((resolve, reject) => {
-    fetch(`${COINGECKO_API}/coins/markets?vs_currency=usd&ids=${id}`)
+    fetch(
+      `${COINGECKO_API}/coins/markets?vs_currency=usd&ids=${id}&per_page=${id.length}&sparkline=true`
+    )
       .then((response) => {
         return response.json();
       })
