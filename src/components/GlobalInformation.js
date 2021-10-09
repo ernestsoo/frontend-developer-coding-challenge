@@ -4,6 +4,7 @@ import CryptoIcon from "../assets/crypto.png";
 import VolumeIcon from "../assets/volume.png";
 import TradingIcon from "../assets/trading.png";
 import UpArrowIcon from "../assets/up-arrow.png";
+import DownArrowIcon from "../assets/down-arrow.png";
 import { getGlobalInformation } from "../api/coingecko";
 
 function GlobalInformation() {
@@ -20,9 +21,8 @@ function GlobalInformation() {
         setGlobalData((state) => {
           return {
             active: data.data.active_cryptocurrencies,
-            market_change: (
-              data.data.market_cap_change_percentage_24h_usd * 100.0
-            ).toFixed(2),
+            market_change:
+              data.data.market_cap_change_percentage_24h_usd.toFixed(2),
             ongoing_icos: data.data.ongoing_icos,
           };
         });
@@ -73,10 +73,17 @@ function GlobalInformation() {
                 <p className="inline-block text-bold text-2xl">
                   {globalData.market_change}%
                 </p>
-                <img
-                  className="inline-block w-4 ml-2 -mt-2"
-                  src={UpArrowIcon}
-                />
+                {globalData.market_change > 0 ? (
+                  <img
+                    className="inline-block w-4 ml-2 -mt-2"
+                    src={UpArrowIcon}
+                  />
+                ) : (
+                  <img
+                    className="inline-block w-4 ml-2 -mt-2"
+                    src={DownArrowIcon}
+                  />
+                )}
               </div>
             </div>
           </div>

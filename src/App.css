@@ -8,6 +8,12 @@ body {
 .bg-light {
     background: #F8F8f8;
 }
+.color-dark {
+    background: #191F2D;
+}
+.bg-dark {
+    background: #191F2D;
+}
 .color-alt-1 {
     color: #ffe7ca;
 }
@@ -33,4 +39,15 @@ body {
     height: 90vh;
     min-height: 600px;
 }
+.nav-position-1 {
+    margin-top: -69px;
+}
+.nav-position-2 {
+    margin-top: 40px;
+}
+.pagination-selected {
+    background-color: black;
+    color: white;
+}
+
 

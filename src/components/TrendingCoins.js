@@ -3,7 +3,6 @@ import "../App.css";
 import { getTrendingCoins, getCoinMarketInformation } from "../api/coingecko";
 import UpArrowIcon from "../assets/up-arrow.png";
 import DownArrowIcon from "../assets/down-arrow.png";
-
 function TrendingCoins() {
   const [didMount, setDidMount] = useState(false);
   const [trendingCoinList, setTrendingCoinList] = useState(null);
@@ -25,22 +24,22 @@ function TrendingCoins() {
               if (item.price_change_24h > 0) {
                 price_change = (
                   <div>
-                    <p className="ml-0 inline-block font-bold text-green-400">
-                      {(item.price_change_24h * 100).toFixed(2)}%
+                    <p className="ml-0 inline-block font-medium text-green-400">
+                      {item.price_change_percentage_24h.toFixed(2)}%
                     </p>
                     <img className="inline-block w-4 ml-2" src={UpArrowIcon} />
                   </div>
                 );
               } else {
                 let negated_price_change =
-                  0.0 - (item.price_change_24h * 100).toFixed(2);
+                  0.0 - item.price_change_percentage_24h.toFixed(2);
 
                 if (negated_price_change === 0) {
                   negated_price_change = 0.01;
                 }
                 price_change = (
                   <div>
-                    <p className="ml-0 inline-block font-bold text-red-400">
+                    <p className="ml-0 inline-block font-medium text-red-400">
                       {negated_price_change}%
                     </p>
                     <img
