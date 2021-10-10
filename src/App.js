@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SideNav from "./components/SideNav";
 import HomeScreen from "./screens/HomeScreen";
 import CryptoListScreen from "./screens/CryptoListScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 import ErrorIcon from "./assets/error.svg";
 
 function App() {
@@ -23,9 +24,7 @@ function App() {
         <SideNav />
         <div className="w-full ml-48">
           <Switch>
-            <Route path="/global">
-              <div>Global</div>
-            </Route>
+            <Route path="/settings" component={SettingsScreen} />
             <Route path="/list" component={CryptoListScreen} />
             <Route path="/" component={HomeScreen} />
           </Switch>

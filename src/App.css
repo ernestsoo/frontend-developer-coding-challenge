@@ -39,11 +39,18 @@ body {
     height: 90vh;
     min-height: 600px;
 }
+.settings-screen {
+    height: 90vh;
+    min-height: 600px;
+}
 .nav-position-1 {
     margin-top: -69px;
 }
 .nav-position-2 {
     margin-top: 40px;
+}
+.nav-position-3 {
+    margin-top: 152px;
 }
 .pagination-selected {
     background-color: black;

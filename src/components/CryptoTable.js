@@ -24,7 +24,7 @@ function CryptoTable(props) {
           price_change = (
             <>
               <img className="inline-block w-4 -mt-1" src={UpArrowIcon} />
-              <p className="inline-block ml-2 font-light text-green-400">{`${parseInt(
+              <p className="inline-block ml-2 font-light text-green-400">{`${parseFloat(
                 item.price_change_percentage_24h
               ).toFixed(2)}%`}</p>
             </>
@@ -33,7 +33,7 @@ function CryptoTable(props) {
           price_change = (
             <>
               <img className="inline-block w-4 -mt-1" src={DownArrowIcon} />
-              <p className="inline-block ml-2 font-light text-red-400">{`${parseInt(
+              <p className="inline-block ml-2 font-light text-red-400">{`${parseFloat(
                 item.price_change_percentage_24h
               ).toFixed(2)}%`}</p>
             </>

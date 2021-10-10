@@ -4,14 +4,22 @@ import LogoIcon from "../assets/logo.png";
 import SettingsIcon from "../assets/settings.png";
 import { ReactComponent as HomeSVG } from "../assets/home.svg";
 import { ReactComponent as ListSVG } from "../assets/list.svg";
+import { ReactComponent as SettingsSVG } from "../assets/settings.svg";
 import { useHistory, useLocation } from "react-router-dom";
 
 function SideNav() {
   let history = useHistory();
   const location = useLocation();
-  const [currentState, setCurrentState] = useState(
-    location.pathname == "/" ? 1 : 2
-  );
+  const [currentState, setCurrentState] = useState(1);
+  useEffect(() => {
+    if (location.pathname == "/") {
+      setCurrentState(1);
+    } else if (location.pathname == "/list") {
+      setCurrentState(2);
+    } else if (location.pathname == "/settings") {
+      setCurrentState(3);
+    }
+  }, [location]);
   return (
     <div className="fixed flex items-center w-48 h-screen">
       <div className="side-nav flex flex-column items-center rounded-3xl bg-black w-32 h-full mx-auto">
@@ -27,7 +35,10 @@ function SideNav() {
               history.push("/");
             }}
           >
-            <HomeSVG fill={currentState == 1 ? "black" : "white"} />
+            <HomeSVG
+              fill={currentState == 1 ? "black" : "white"}
+              stroke={currentState == 1 ? "black" : "white"}
+            />
           </div>
           <div
             className={`absolute transition-all duration-700 nav-position-${currentState}`}
@@ -51,10 +62,16 @@ function SideNav() {
           >
             <ListSVG fill={currentState == 2 ? "black" : "white"} />
           </div>
-          <img
-            className="mt-20 w-7 mx-auto cursor-pointer"
-            src={SettingsIcon}
-          />
+          <div
+            className="relative mt-20 w-8 mx-auto cursor-pointer"
+            style={{ zIndex: 1 }}
+            onClick={() => {
+              setCurrentState(3);
+              history.push("/settings");
+            }}
+          >
+            <SettingsSVG fill={currentState == 3 ? "black" : "white"} />
+          </div>
         </div>
       </div>
     </div>
