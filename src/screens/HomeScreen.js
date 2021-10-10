@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 function HomeScreen() {
   const history = useHistory();
   return (
-    <div className="screen flex">
+    <div data-testid="homeScreen" className="screen flex">
       <div className="flex-1 bg-grey pr-7">
         <GlobalInformation />
         <div className="mt-7 bg-light rounded-3xl px-8 py-6">

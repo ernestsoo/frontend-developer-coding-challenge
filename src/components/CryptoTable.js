@@ -131,7 +131,7 @@ function CryptoTable(props) {
       </div>
     );
   }
-  if (isError) {
+  if (isError || props.isError) {
     loadedContent = (
       <div className="w-full py-36">
         <div className="table mx-auto ">

@@ -10,7 +10,7 @@ import ErrorIcon from "./assets/error.svg";
 
 function App() {
   return (
-    <Router>
+    <Router data-testid="app">
       <div className="flex flex-col justify-center xl:hidden h-screen w-screen text-center">
         <img className="w-28 mx-auto mb-8" src={ErrorIcon} />
         <p className="text-gray-600">

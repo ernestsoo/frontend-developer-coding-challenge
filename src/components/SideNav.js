@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import LogoIcon from "../assets/logo.png";
-import SettingsIcon from "../assets/settings.png";
 import { ReactComponent as HomeSVG } from "../assets/home.svg";
 import { ReactComponent as ListSVG } from "../assets/list.svg";
 import { ReactComponent as SettingsSVG } from "../assets/settings.svg";
@@ -21,11 +20,14 @@ function SideNav() {
     }
   }, [location]);
   return (
-    <div className="fixed flex items-center w-48 h-screen">
+    <div
+      data-testid="sideNav"
+      className="fixed flex items-center w-48 h-screen"
+    >
       <div className="side-nav flex flex-column items-center rounded-3xl bg-black w-32 h-full mx-auto">
         <div className="relative mx-auto">
           <div className="bg-white w-16 h-16 pt-3 rounded-full mx-auto clear-right">
-            <img class="w-10 mx-auto" src={LogoIcon} />
+            <img className="w-10 mx-auto" src={LogoIcon} />
           </div>
           <div
             className="relative mt-36 w-8 mx-auto cursor-pointer"

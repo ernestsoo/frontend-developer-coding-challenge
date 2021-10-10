@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import { getAllCoins } from "../api/coingecko";
 
 function Pagination(props) {
   const [maxPage, setMaxPage] = useState(-1);
@@ -83,7 +82,7 @@ function Pagination(props) {
     }
   };
   return (
-    <div class="w-full my-6">
+    <div className="w-full my-6">
       <div className="table mx-auto">
         <button
           className="bg-black rounded-3xl text-white px-3 py-2 mr-20"

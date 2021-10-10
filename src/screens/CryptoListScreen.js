@@ -14,11 +14,16 @@ function CryptoListScreen() {
   const [searchKey, setSearchKey] = useState("");
   const [searchedIds, setSearchedIds] = useState();
   const [requestCounter, setRequestCounter] = useState(0);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     if (!didMount) {
-      getAllCoins().then((data) => {
-        setAllCoins(data);
-      });
+      getAllCoins()
+        .then((data) => {
+          setAllCoins(data);
+        })
+        .catch((error) => {
+          setIsError(true);
+        });
       setDidMount(true);
     }
   });
@@ -26,6 +31,11 @@ function CryptoListScreen() {
     setIsSearching(false);
     setPage(1);
     setRequestCounter((state) => state + 1);
+  };
+  const keyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      searchHandler();
+    }
   };
   const searchHandler = () => {
     setIsSearching(true);
@@ -90,7 +100,7 @@ function CryptoListScreen() {
     );
   }
   return (
-    <div className="screen">
+    <div data-testid="cryptoListScreen" className="screen">
       <div className="mb-5">
         <input
           className="bg-light px-5 py-2 rounded-3xl w-96 placeholder-gray-500"
@@ -99,6 +109,7 @@ function CryptoListScreen() {
           onChange={(e) => {
             setSearchKey(e.target.value);
           }}
+          onKeyDown={keyDownHandler}
         />
         <button
           className="text-white ml-3 bg-black py-2 px-5 rounded-3xl"
@@ -117,6 +128,7 @@ function CryptoListScreen() {
           per_page={100}
           searchedIds={searchedIds}
           requestCounter={requestCounter}
+          isError={isError}
         />
         {pagination}
       </div>

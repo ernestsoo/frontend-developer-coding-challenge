@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import { getTrendingCoins, getCoinMarketInformation } from "../api/coingecko";
+import { getTrendingCoins } from "../api/coingecko";
 import UpArrowIcon from "../assets/up-arrow.png";
 import DownArrowIcon from "../assets/down-arrow.png";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import ErrorIcon from "../assets/error.svg";
 
 function TrendingCoins() {
   const [didMount, setDidMount] = useState(false);
   const [trendingCoinList, setTrendingCoinList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const setData = (data) => {
     setTrendingCoinList(
       data.map((item, index) => {
@@ -57,13 +59,30 @@ function TrendingCoins() {
   };
   useEffect(() => {
     if (!didMount) {
-      getTrendingCoins().then((data) => {
-        setIsLoading(false);
-        setData(data);
-      });
+      getTrendingCoins()
+        .then((data) => {
+          setIsLoading(false);
+          setData(data);
+        })
+        .catch((error) => {
+          setIsError(true);
+        });
       setDidMount(true);
     }
   });
+  if (isError) {
+    return (
+      <div className="mx-auto table py-48">
+        <div className="table mx-auto ">
+          <img className="w-20" src={ErrorIcon} />
+        </div>
+        <p className="text-center text-gray-600">
+          There was an error in your request.
+        </p>
+        <p className="text-center text-gray-600">Please Try again.</p>
+      </div>
+    );
+  }
   if (isLoading) {
     return (
       <div className="mx-auto table py-48">
