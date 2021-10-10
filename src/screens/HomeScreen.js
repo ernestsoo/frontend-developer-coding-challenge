@@ -28,7 +28,7 @@ function HomeScreen() {
           style={{ minWidth: 340 }}
         >
           <p className="font-bold">Trending Coins</p>
-          <p className="text-gray-600 text-xs">Sorted by Market Cap Ranking</p>
+          <p className="text-gray-600 text-xs">Sorted by Volume</p>
           <TrendingCoins />
         </div>
       </div>

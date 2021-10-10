@@ -13,6 +13,7 @@ function CryptoListScreen() {
   const [allCoins, setAllCoins] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [searchedIds, setSearchedIds] = useState();
+  const [requestCounter, setRequestCounter] = useState(0);
   useEffect(() => {
     if (!didMount) {
       getAllCoins().then((data) => {
@@ -24,10 +25,10 @@ function CryptoListScreen() {
   const showFullList = () => {
     setIsSearching(false);
     setPage(1);
+    setRequestCounter((state) => state + 1);
   };
   const searchHandler = () => {
     setIsSearching(true);
-    setPage(0);
     let coinsArr = [...allCoins];
     coinsArr = coinsArr.filter((item) => {
       let found = false;
@@ -111,7 +112,12 @@ function CryptoListScreen() {
         <p className="text-gray-600 text-xs">Sorted by Market Cap</p>
         {searchResults}
         {pagination}
-        <CryptoTable page={page} per_page={100} searchedIds={searchedIds} />
+        <CryptoTable
+          page={page}
+          per_page={100}
+          searchedIds={searchedIds}
+          requestCounter={requestCounter}
+        />
         {pagination}
       </div>
     </div>

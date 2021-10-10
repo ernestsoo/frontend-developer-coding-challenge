@@ -88,6 +88,12 @@ function CryptoTable(props) {
   useEffect(() => {
     if (didMount) {
       setIsLoading(true);
+      updateCoinsList(props.page, props.per_page);
+    }
+  }, [props.page, props.requestCounter]);
+  useEffect(() => {
+    if (didMount) {
+      setIsLoading(true);
       getCoinMarketInformation(props.searchedIds).then((data) => {
         setData(data);
         setIsLoading(false);
@@ -106,12 +112,6 @@ function CryptoTable(props) {
       setDidMount(true);
     }
   });
-  useEffect(() => {
-    if (didMount) {
-      setIsLoading(true);
-      updateCoinsList(props.page, props.per_page);
-    }
-  }, [props.page]);
 
   let loadedContent = undefined;
   if (!isLoading) {

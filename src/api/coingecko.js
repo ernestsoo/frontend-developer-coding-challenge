@@ -2,7 +2,9 @@ const COINGECKO_API = "https://api.coingecko.com/api/v3";
 
 export const getTrendingCoins = () => {
   return new Promise((resolve, reject) => {
-    fetch(`${COINGECKO_API}/search/trending`)
+    fetch(
+      `${COINGECKO_API}/coins/markets?vs_currency=usd&per_page=7&order=volume_desc`
+    )
       .then((response) => {
         return response.json();
       })
@@ -19,7 +21,7 @@ export const getCoinMarketInformation = (id) => {
   const ids = id.split(",");
   return new Promise((resolve, reject) => {
     fetch(
-      `${COINGECKO_API}/coins/markets?vs_currency=usd&ids=${id}&per_page=${id.length}&sparkline=true`
+      `${COINGECKO_API}/coins/markets?vs_currency=usd&ids=${id}&per_page=${ids.length}&sparkline=true`
     )
       .then((response) => {
         return response.json();
