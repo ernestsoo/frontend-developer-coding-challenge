@@ -34,7 +34,7 @@ function GlobalInformation() {
     <div className="bg-light rounded-3xl px-8 py-6">
       <p className="font-bold">Global Market Information</p>
       <div className="grid grid-cols-12 gap-4 mt-6">
-        <div className="flex items-center col-span-4 h-24 rounded-md bg-white shadow-md">
+        <div className="flex items-center col-span-12 xl:col-span-4 h-24 rounded-md bg-white shadow-md">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-4">
               <div className="w-16 pt-4 h-16 ml-4 bg-alt-1 rounded-md">
@@ -47,7 +47,7 @@ function GlobalInformation() {
             </div>
           </div>
         </div>
-        <div className="flex items-center col-span-4 h-24 rounded-md bg-white shadow-md">
+        <div className="flex items-center col-span-12 xl:col-span-4 h-24 rounded-md bg-white shadow-md">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-4">
               <div className="w-16 pt-4 h-16 ml-4 bg-alt-2 rounded-md">
@@ -60,7 +60,7 @@ function GlobalInformation() {
             </div>
           </div>
         </div>
-        <div className="flex items-center col-span-4 h-24 rounded-md bg-white shadow-md">
+        <div className="flex items-center col-span-12 xl:col-span-4 h-24 rounded-md bg-white shadow-md">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-4">
               <div className="w-16 pt-4 h-16 ml-4 bg-alt-3 rounded-md">

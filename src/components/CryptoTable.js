@@ -8,11 +8,13 @@ import Colors from "../constants/colors";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { getCoinMarketInformation } from "../api/coingecko";
+import ErrorIcon from "../assets/error.svg";
 
 function CryptoTable(props) {
   const [didMount, setDidMount] = useState(false);
   const [coinsList, setCoinsList] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const setData = (data) => {
     setCoinsList(
@@ -74,10 +76,14 @@ function CryptoTable(props) {
     );
   };
   const updateCoinsList = (page, per_page) => {
-    getCoinsList(page, per_page).then((data) => {
-      setIsLoading(false);
-      setData(data);
-    });
+    getCoinsList(page, per_page)
+      .then((data) => {
+        setIsLoading(false);
+        setData(data);
+      })
+      .catch((error) => {
+        setIsError(true);
+      });
   };
   useEffect(() => {
     if (didMount) {
@@ -122,6 +128,19 @@ function CryptoTable(props) {
             timeout={3000}
           />
         </div>
+      </div>
+    );
+  }
+  if (isError) {
+    loadedContent = (
+      <div className="w-full py-36">
+        <div className="table mx-auto ">
+          <img className="w-24" src={ErrorIcon} />
+        </div>
+        <p className="text-center text-gray-600">
+          There was an error in your request.
+        </p>
+        <p className="text-center text-gray-600">Please Try again.</p>
       </div>
     );
   }

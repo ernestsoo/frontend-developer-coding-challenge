@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination";
 import { getAllCoins } from "../api/coingecko";
 
 function CryptoListScreen() {
+  const [isSearching, setIsSearching] = useState(false);
   const [page, setPage] = useState(1);
   const [paginationPointer, setPaginationPointer] = useState(1);
   const [paginationIndex, setPaginationIndex] = useState(0);
@@ -20,18 +21,33 @@ function CryptoListScreen() {
       setDidMount(true);
     }
   });
+  const showFullList = () => {
+    setIsSearching(false);
+    setPage(1);
+  };
   const searchHandler = () => {
+    setIsSearching(true);
+    setPage(0);
     let coinsArr = [...allCoins];
     coinsArr = coinsArr.filter((item) => {
+      let found = false;
       if (
         item.name
           .toString()
           .toLowerCase()
           .indexOf(searchKey.toString().toLowerCase()) > -1
       ) {
-        return true;
+        found = true;
       }
-      return false;
+      if (
+        item.symbol
+          .toString()
+          .toLowerCase()
+          .indexOf(searchKey.toString().toLowerCase()) > -1
+      ) {
+        found = true;
+      }
+      return found;
     });
     console.log(coinsArr);
     let searchedIdsString = "";
@@ -44,6 +60,34 @@ function CryptoListScreen() {
     });
     setSearchedIds(searchedIdsString);
   };
+  let pagination = undefined;
+  let searchResults = undefined;
+  if (!isSearching) {
+    pagination = (
+      <Pagination
+        current={page}
+        setPage={setPage}
+        paginationIndex={paginationIndex}
+        setPaginationIndex={setPaginationIndex}
+        paginationPointer={paginationPointer}
+        setPaginationPointer={setPaginationPointer}
+        maxCoins={allCoins.length}
+      />
+    );
+  } else {
+    const searchedIdsLength = searchedIds.split(",").length;
+    searchResults = (
+      <div className="text-center py-8">
+        <p className="font-medium text-lg">{searchedIdsLength} Results Found</p>
+        <button
+          className="mt-3 bg-black text-white px-5 py-2 rounded-3xl"
+          onClick={showFullList}
+        >
+          Show Full List
+        </button>
+      </div>
+    );
+  }
   return (
     <div className="screen">
       <div className="mb-5">
@@ -65,25 +109,10 @@ function CryptoListScreen() {
       <div className=" bg-light rounded-3xl px-8 py-6 mr-8">
         <p className="font-bold">Cryptocurrencies List</p>
         <p className="text-gray-600 text-xs">Sorted by Market Cap</p>
-        <Pagination
-          current={page}
-          setPage={setPage}
-          paginationIndex={paginationIndex}
-          setPaginationIndex={setPaginationIndex}
-          paginationPointer={paginationPointer}
-          setPaginationPointer={setPaginationPointer}
-          maxCoins={allCoins.length}
-        />
+        {searchResults}
+        {pagination}
         <CryptoTable page={page} per_page={100} searchedIds={searchedIds} />
-        <Pagination
-          current={page}
-          setPage={setPage}
-          paginationIndex={paginationIndex}
-          setPaginationIndex={setPaginationIndex}
-          paginationPointer={paginationPointer}
-          setPaginationPointer={setPaginationPointer}
-          maxCoins={allCoins.length}
-        />
+        {pagination}
       </div>
     </div>
   );
