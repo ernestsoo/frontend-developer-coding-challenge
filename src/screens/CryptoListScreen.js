@@ -39,6 +39,7 @@ function CryptoListScreen() {
   };
   const searchHandler = () => {
     setIsSearching(true);
+    setPage(1);
     let coinsArr = [...allCoins];
     coinsArr = coinsArr.filter((item) => {
       let found = false;
@@ -60,7 +61,6 @@ function CryptoListScreen() {
       }
       return found;
     });
-    console.log(coinsArr);
     let searchedIdsString = "";
     coinsArr.map((item, index) => {
       if (index + 1 == coinsArr.length) {
@@ -90,7 +90,7 @@ function CryptoListScreen() {
     searchResults = (
       <div className="text-center py-8">
         <p className="font-medium text-lg">
-          {searchedIdsLength == 1 ? 0 : searchedIdsLength} Results Found
+          {searchedIds.length == 0 ? 0 : searchedIdsLength} Results Found
         </p>
         <button
           className="mt-3 bg-black text-white px-5 py-2 rounded-3xl"

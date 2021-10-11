@@ -26,12 +26,14 @@ function SideNav() {
     >
       <div className="side-nav flex flex-column items-center rounded-3xl bg-black w-32 h-full mx-auto">
         <div className="relative mx-auto">
-          <div className="bg-white w-16 h-16 pt-3 rounded-full mx-auto clear-right">
+          <div
+            className="bg-white w-16 h-16 pt-3 rounded-full mx-auto clear-right cursor-pointer"
+            onClick={() => history.push("/")}
+          >
             <img className="w-10 mx-auto" src={LogoIcon} />
           </div>
           <div
-            className="relative mt-36 w-8 mx-auto cursor-pointer"
-            style={{ zIndex: 1 }}
+            className="relative mt-36 w-8 mx-auto cursor-pointer to-front"
             onClick={() => {
               setCurrentState(1);
               history.push("/");
@@ -44,7 +46,6 @@ function SideNav() {
           </div>
           <div
             className={`absolute transition-all duration-700 nav-position-${currentState}`}
-            style={{ zIndex: 0 }}
           >
             <div className="bg-white w-28 h-6">
               <div className="bg-black rounded-br-3xl w-24 h-6"></div>
@@ -55,8 +56,7 @@ function SideNav() {
             </div>
           </div>
           <div
-            className="relative mt-20 w-8 mx-auto cursor-pointer"
-            style={{ zIndex: 1 }}
+            className="relative mt-20 w-8 mx-auto cursor-pointer to-front"
             onClick={() => {
               setCurrentState(2);
               history.push("/list");
@@ -65,8 +65,7 @@ function SideNav() {
             <ListSVG fill={currentState == 2 ? "black" : "white"} />
           </div>
           <div
-            className="relative mt-20 w-8 mx-auto cursor-pointer"
-            style={{ zIndex: 1 }}
+            className="relative mt-20 w-8 mx-auto cursor-pointer to-front"
             onClick={() => {
               setCurrentState(3);
               history.push("/settings");

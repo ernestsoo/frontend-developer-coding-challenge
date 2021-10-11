@@ -28,10 +28,7 @@ function HomeScreen() {
         </div>
       </div>
       <div className="pr-7">
-        <div
-          className="bg-light rounded-3xl px-8 py-6"
-          style={{ minWidth: 340 }}
-        >
+        <div className="trending-coins-container bg-light rounded-3xl px-8 py-6">
           <p className="font-bold">Trending Coins</p>
           <p className="text-gray-600 text-xs">Sorted by Volume</p>
           <TrendingCoins />

@@ -17,8 +17,7 @@ function GlobalInformation() {
   useEffect(() => {
     if (!didMount) {
       getGlobalInformation().then((data) => {
-        console.log(data.data);
-        setGlobalData((state) => {
+        setGlobalData(() => {
           return {
             active: data.data.active_cryptocurrencies,
             market_change:

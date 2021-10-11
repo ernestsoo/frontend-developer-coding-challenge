@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import ErrorIcon from "../assets/error.svg";
 import ViewIcon from "../assets/view.png";
 
 function SettingsScreen() {

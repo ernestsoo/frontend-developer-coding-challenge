@@ -43,6 +43,9 @@ body {
     height: 90vh;
     min-height: 600px;
 }
+.trending-coins-container {
+    min-width: 340px;
+}
 .nav-position-1 {
     margin-top: -69px;
 }
@@ -55,6 +58,9 @@ body {
 .pagination-selected {
     background-color: black;
     color: white;
+}
+.to-front {
+    z-index: 1;
 }
 
 
