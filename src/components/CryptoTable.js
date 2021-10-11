@@ -57,7 +57,7 @@ function CryptoTable(props) {
               <p className="font-light">{`$${item.current_price}`}</p>
             </div>
             <div className="col-span-2">
-              <p className="font-light">{`$${item.high_24h}`}</p>
+              <p className="font-light">{`$${item.ath}`}</p>
             </div>
             <div className="col-span-2 pr-12">
               <p className="font-light">
@@ -81,6 +81,7 @@ function CryptoTable(props) {
   const updateCoinsList = (page, per_page) => {
     getCoinsList(page, per_page)
       .then((data) => {
+        console.log(data);
         setIsLoading(false);
         setData(data);
       })
@@ -162,7 +163,7 @@ function CryptoTable(props) {
           <p className="font-medium">Price (USD)</p>
         </div>
         <div className="col-span-2">
-          <p className="font-medium">High (24h)</p>
+          <p className="font-medium">All Time High</p>
         </div>
         <div className="col-span-2">
           <p className="font-medium">Change (24h)</p>

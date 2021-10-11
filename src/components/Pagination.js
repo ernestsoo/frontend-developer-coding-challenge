@@ -57,6 +57,16 @@ function Pagination(props) {
       </div>
     );
   });
+  const startHandler = () => {
+    props.setPage(1);
+    props.setPaginationIndex(0);
+    props.setPaginationPointer(1);
+  };
+  const endHandler = () => {
+    props.setPage(maxPage);
+    props.setPaginationIndex((maxPage % 5) - 1);
+    props.setPaginationPointer(parseInt(maxPage / 5) * 5 + 1);
+  };
   const nextHandler = () => {
     if (props.paginationPointer + 5 <= maxPage) {
       props.setPage(props.paginationPointer + 5);
@@ -85,17 +95,29 @@ function Pagination(props) {
     <div className="w-full my-6">
       <div className="table mx-auto">
         <button
-          className="bg-black rounded-3xl text-white px-3 py-2 mr-20"
+          className="bg-black rounded-3xl text-white px-3 py-2 mr-4"
+          onClick={startHandler}
+        >
+          Start
+        </button>
+        <button
+          className="bg-black rounded-3xl text-white px-3 py-2 mr-24"
           onClick={backHandler}
         >
           Back
         </button>
         {buttonMap}
         <button
-          className="bg-black rounded-3xl text-white px-3 py-2 ml-20"
+          className="bg-black rounded-3xl text-white px-3 py-2 ml-24"
           onClick={nextHandler}
         >
           Next
+        </button>
+        <button
+          className="bg-black rounded-3xl text-white px-3 py-2 ml-4"
+          onClick={endHandler}
+        >
+          End
         </button>
       </div>
     </div>

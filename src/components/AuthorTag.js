@@ -3,7 +3,7 @@ import "../App.css";
 
 function Attribution(props) {
   return (
-    <div>
+    <div className="mx-auto">
       <div className="text-center my-2 text-gray-500">
         Icons made by
         <a className="text-gray-900" href={props.link} title={props.author}>
@@ -12,10 +12,12 @@ function Attribution(props) {
         {` from `}
         <a
           className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-          href="https://www.flaticon.com/"
-          title="Flaticon"
+          href={
+            props.sourceLink ? props.sourceLink : "https://www.flaticon.com/"
+          }
+          title={props.source ? props.source : "www.flaticon.com"}
         >
-          {`www.flaticon.com`}
+          {props.source ? props.source : "www.flaticon.com"}
         </a>
       </div>
     </div>

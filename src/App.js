@@ -30,7 +30,9 @@ function App() {
           </Switch>
         </div>
       </div>
-      <Attribution />
+      <div className="hidden xl:block">
+        <Attribution />
+      </div>
     </Router>
   );
 }

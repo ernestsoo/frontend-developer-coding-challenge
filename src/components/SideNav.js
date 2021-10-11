@@ -39,10 +39,7 @@ function SideNav() {
               history.push("/");
             }}
           >
-            <HomeSVG
-              fill={currentState == 1 ? "black" : "white"}
-              stroke={currentState == 1 ? "black" : "white"}
-            />
+            <HomeSVG fill={currentState == 1 ? "black" : "white"} />
           </div>
           <div
             className={`absolute transition-all duration-700 nav-position-${currentState}`}
@@ -71,7 +68,7 @@ function SideNav() {
               history.push("/settings");
             }}
           >
-            <SettingsSVG fill={currentState == 3 ? "black" : "white"} />
+            <SettingsSVG stroke={currentState == 3 ? "black" : "white"} />
           </div>
         </div>
       </div>
