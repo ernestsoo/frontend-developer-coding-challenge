@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import CryptoIcon from "../assets/crypto.png";
-import VolumeIcon from "../assets/volume.png";
+import IcoIcon from "../assets/ico.png";
 import TradingIcon from "../assets/trading.png";
 import UpArrowIcon from "../assets/up-arrow.png";
 import DownArrowIcon from "../assets/down-arrow.png";
@@ -10,9 +10,9 @@ import { getGlobalInformation } from "../api/coingecko";
 function GlobalInformation() {
   const [didMount, setDidMount] = useState(false);
   const [globalData, setGlobalData] = useState({
-    active: 0,
-    market_change: 0,
-    ongoing_icos: 0,
+    active: "-",
+    market_change: "-",
+    ongoing_icos: "-",
   });
   useEffect(() => {
     if (!didMount) {
@@ -51,7 +51,7 @@ function GlobalInformation() {
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-4">
               <div className="w-16 pt-4 h-16 ml-4 bg-alt-2 rounded-md">
-                <img className="w-8 mx-auto" src={VolumeIcon} />
+                <img className="w-8 mx-auto" src={IcoIcon} />
               </div>
             </div>
             <div className="col-span-8 pt-2">

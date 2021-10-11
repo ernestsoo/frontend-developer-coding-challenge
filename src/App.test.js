@@ -30,7 +30,7 @@ test('renders CryptoListScreen component', () => {
 test('renders SettingsScreen component', () => {
   const { getByTestId } = render(<SettingsScreen />);
   expect(getByTestId("settingsScreen")).toBeInTheDocument();
-  expect(screen.getByText('This tab is just a placeholder page.')).toBeInTheDocument();
+  expect(screen.getByText('This tab is just a placeholder.')).toBeInTheDocument();
 });
 
 

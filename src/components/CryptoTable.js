@@ -93,11 +93,13 @@ function CryptoTable(props) {
   }, [props.page, props.requestCounter]);
   useEffect(() => {
     if (didMount) {
-      setIsLoading(true);
-      getCoinMarketInformation(props.searchedIds).then((data) => {
-        setData(data);
-        setIsLoading(false);
-      });
+      if (props.searchedIds.length != 0) {
+        setIsLoading(true);
+        getCoinMarketInformation(props.searchedIds).then((data) => {
+          setData(data);
+          setIsLoading(false);
+        });
+      }
     }
   }, [props.searchedIds]);
   useEffect(() => {

@@ -6,18 +6,18 @@ import SideNav from "./components/SideNav";
 import HomeScreen from "./screens/HomeScreen";
 import CryptoListScreen from "./screens/CryptoListScreen";
 import SettingsScreen from "./screens/SettingsScreen";
-import ErrorIcon from "./assets/error.svg";
-
+import ErrorIcon from "./assets/error.png";
+import Attribution from "./components/Attribution";
 function App() {
   return (
     <Router data-testid="app">
       <div className="flex flex-col justify-center xl:hidden h-screen w-screen text-center">
         <img className="w-28 mx-auto mb-8" src={ErrorIcon} />
         <p className="text-gray-600">
-          This website has not been optimized for mobile/table view.
+          This website has not been optimized for mobile/tablet view.
         </p>
         <p className="text-gray-600">
-          Please view it in Desktop view in the meantime :)
+          Please view it in a larger screen in the meantime :)
         </p>
       </div>
       <div className="App hidden xl:flex flex-row">
@@ -30,6 +30,7 @@ function App() {
           </Switch>
         </div>
       </div>
+      <Attribution />
     </Router>
   );
 }

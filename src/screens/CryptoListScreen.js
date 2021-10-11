@@ -89,7 +89,9 @@ function CryptoListScreen() {
     const searchedIdsLength = searchedIds.split(",").length;
     searchResults = (
       <div className="text-center py-8">
-        <p className="font-medium text-lg">{searchedIdsLength} Results Found</p>
+        <p className="font-medium text-lg">
+          {searchedIdsLength == 1 ? 0 : searchedIdsLength} Results Found
+        </p>
         <button
           className="mt-3 bg-black text-white px-5 py-2 rounded-3xl"
           onClick={showFullList}
@@ -113,7 +115,11 @@ function CryptoListScreen() {
         />
         <button
           className="text-white ml-3 bg-black py-2 px-5 rounded-3xl"
-          onClick={searchHandler}
+          onClick={() => {
+            if (searchKey.length > 1) {
+              searchHandler();
+            }
+          }}
         >
           Search
         </button>
