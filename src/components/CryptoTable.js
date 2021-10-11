@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import { getCoinsList } from "../api/coingecko";
-import UpArrowIcon from "../assets/up-arrow.png";
-import DownArrowIcon from "../assets/down-arrow.png";
 import { Sparklines, SparklinesLine } from "react-sparklines";
+import { getCoinMarketInformation } from "../api/coingecko";
 import Colors from "../constants/colors";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import { getCoinMarketInformation } from "../api/coingecko";
 import ErrorIcon from "../assets/error.svg";
+import UpArrowIcon from "../assets/up-arrow.png";
+import DownArrowIcon from "../assets/down-arrow.png";
 
 function CryptoTable(props) {
   const [didMount, setDidMount] = useState(false);
@@ -54,25 +54,29 @@ function CryptoTable(props) {
               <p className="ml-3 inline-block font-light">{item.name}</p>
             </div>
             <div className="col-span-2">
-              <p className="font-light">{`$${item.current_price}`}</p>
-            </div>
-            <div className="col-span-2">
-              <p className="font-light">{`$${item.ath}`}</p>
-            </div>
-            <div className="col-span-2 pr-12">
               <p className="font-light">
-                <Sparklines data={item.sparkline_in_7d.price.slice(145, 168)}>
-                  <SparklinesLine
-                    color={
-                      item.price_change_percentage_24h > 0
-                        ? Colors.green
-                        : Colors.red
-                    }
-                  />
-                </Sparklines>
+                {item.current_price != null ? `$${item.current_price}` : "-"}
               </p>
             </div>
-            <div className="col-span-2">{price_change}</div>
+            <div className="col-span-2">
+              <p className="font-light">
+                {item.ath != null ? `$${item.ath}` : "-"}
+              </p>
+            </div>
+            <div className="col-span-2 pr-12">
+              <Sparklines data={item.sparkline_in_7d.price.slice(145, 168)}>
+                <SparklinesLine
+                  color={
+                    item.price_change_percentage_24h > 0
+                      ? Colors.green
+                      : Colors.red
+                  }
+                />
+              </Sparklines>
+            </div>
+            <div className="col-span-2">
+              {item.price_change_percentage_24h ? price_change : "-"}
+            </div>
           </div>
         );
       })
@@ -81,7 +85,6 @@ function CryptoTable(props) {
   const updateCoinsList = (page, per_page) => {
     getCoinsList(page, per_page)
       .then((data) => {
-        console.log(data);
         setIsLoading(false);
         setData(data);
       })

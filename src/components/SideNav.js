@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
+import { useHistory, useLocation } from "react-router-dom";
 import LogoIcon from "../assets/logo.png";
 import { ReactComponent as HomeSVG } from "../assets/home.svg";
 import { ReactComponent as ListSVG } from "../assets/list.svg";
 import { ReactComponent as SettingsSVG } from "../assets/settings.svg";
-import { useHistory, useLocation } from "react-router-dom";
 
 function SideNav() {
   let history = useHistory();

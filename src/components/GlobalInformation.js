@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
+import { getGlobalInformation } from "../api/coingecko";
 import CryptoIcon from "../assets/crypto.png";
 import IcoIcon from "../assets/ico.png";
 import TradingIcon from "../assets/trading.png";
 import UpArrowIcon from "../assets/up-arrow.png";
 import DownArrowIcon from "../assets/down-arrow.png";
-import { getGlobalInformation } from "../api/coingecko";
 
 function GlobalInformation() {
   const [didMount, setDidMount] = useState(false);

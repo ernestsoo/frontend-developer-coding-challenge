@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
+import { getAllCoins } from "../api/coingecko";
 import CryptoTable from "../components/CryptoTable";
 import Pagination from "../components/Pagination";
-import { getAllCoins } from "../api/coingecko";
 
 function CryptoListScreen() {
   const [isSearching, setIsSearching] = useState(false);

@@ -1,9 +1,9 @@
 import React from "react";
 import "../App.css";
+import { useHistory } from "react-router-dom";
 import GlobalInformation from "../components/GlobalInformation";
 import TrendingCoins from "../components/TrendingCoins";
 import CryptoTable from "../components/CryptoTable";
-import { useHistory } from "react-router-dom";
 
 function HomeScreen() {
   const history = useHistory();
